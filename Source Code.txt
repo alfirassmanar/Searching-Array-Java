@@ -1,0 +1,177 @@
+// array
+        String makanan[] = new String[5],
+               carimakanan[] = new String[5],
+               belimakan[] = new String[5];
+        
+        int harga[] = new int[5],
+            cariharga[] = new int[5],
+            beliharga[] =  new int[5],    
+            jumlahbeli = 0,
+            pilih = 0,
+            pilih2 = 0,
+            jumlah = 0,
+            total = 0,
+            finaltotal = 0,
+            bayar = 0,
+            kembalian = 0;
+        
+       
+        //inisialisasi array
+        makanan [0] = "BURGER KOMPLIT  ";            harga [0] = 35000;
+        makanan [1] = "BURGER SEDERHANA";            harga [1] = 15000;
+        makanan [2] = "BURGER EKONOMI  ";            harga [2] = 45000;
+        makanan [3] = "PIZZA           ";            harga [3] = 20000;
+        makanan [4] = "HOTDOG          ";            harga [4] = 18000;
+        
+        do {
+            System.out.println("\nMENU");
+            System.out.println("1. DAFTAR MENU");
+            System.out.println("2. CARI MENU");
+            System.out.println("3. SELESAI (UNTUK KE-TRANSAKSI)");
+            
+            System.out.print("Pilih : ");
+            pilih = sc.nextInt();
+            
+            switch(pilih){
+                case 1 :      
+                    //urutkan bubble
+                    for(String b = "n"; b.equals("n") || b.equals("N");){
+                    for (int i = 0; i < 5; i++) {
+                        for (int j = 0; j < 4; j++) {
+                            if (makanan[i].compareToIgnoreCase(makanan[j+1])<0) {
+                                String t = makanan[j];
+                                makanan[j] = makanan[j+1];
+                                makanan[j+1] = t;
+                                int h = harga[j];
+                                harga[j] = harga[j+1];
+                                harga[j+1] = h;
+                            }
+                        }
+                    }
+                    
+                    System.out.println("===================================");
+                    System.out.println("DAFTAR MENU");
+                    for (int i = 0; i < 5; i++) {
+                        System.out.println((i+1)+"."+makanan[i] +"("+ harga[i]+")");
+                    }
+                        System.out.print("Pesan (jika batal ketik (3) untuk keluar) : ");
+                        pilih2 = sc.nextInt();
+                        belimakan[jumlahbeli] = carimakanan[pilih2 - 1];
+                        beliharga[jumlahbeli] = cariharga[pilih2 - 1];
+                        jumlahbeli++;
+                        if (pilih2 == 3) {
+                            System.out.print("\n Apa Anda Ingin Keluar? (y/n) :"); 
+                                b = sc.next();
+                            }
+                        }
+                        System.out.print("Jumlah Beli (jika batal ketik (3) untuk keluar) : ");
+                        pilih2 = sc.nextInt();
+                        
+                    break;
+                case 2 :
+                    System.out.println("1. CARI BEDASARKAN HARGA");
+                    System.out.println("2. CARI BEDASARKAN NAMA");
+                    System.out.print("Pilih : ");
+                    pilih2 = sc.nextInt();
+                    
+                    switch(pilih2){
+                        case 1:
+                            
+                            System.out.println("Cari Menu Berdasarkan Range Harga"); //Bedasarkan Harga            
+                            System.out.print("Dari harga                    : ");
+                            int hargabawah = sc.nextInt();
+                            System.out.print("Sampai harga                  : ");
+                            
+                            int hargaatas = sc.nextInt();
+                            for(String b = "y"; b.equals("y") || b.equals("Y");){
+                            System.out.println("------------------------------------------------"); // shorting for menu n harga (part 1)
+                            for (int i = 0; i < harga.length; i++) {
+                                if (harga [i] >= hargabawah) {
+                                    if (harga [i] <= hargaatas) {
+                                        System.out.println((i+1) + "." + makanan[i] + "\t" + harga[i]);                            
+                                    } 
+                                } 
+                            }
+                            System.out.print("Pilih Menu : ");
+                            pilih2 = sc.nextInt();
+                            belimakan[jumlahbeli] = carimakanan[pilih2 - 1];
+                            beliharga[jumlahbeli] = cariharga[pilih2 - 1];
+                            jumlahbeli++;
+                            
+                            System.out.print("Jumlah Beli : ");
+                            jumlah = sc.nextInt();
+                            System.out.print("\n Apa Anda Ingin Pesan Menu Lagi? (y/n) :"); 
+                                b = sc.next();
+                            }
+                            break;
+                            
+                        case 2:
+                            System.out.print("Cari Nama : ");   // bedasarkan nama
+                            String cari = sc.next();
+                            for(String b = "y"; b.equals("y") || b.equals("Y");){
+                            int index2 = 0;                            
+                            for (int i = 0; i < makanan.length; i++) {
+                                if (makanan[i].indexOf(cari) >= 0) {
+                                    carimakanan[index2] = makanan[i];
+                                    cariharga[index2] = harga[i];
+                                    index2++;
+                                    System.out.println(index2+"."+makanan[i]+" "+harga[i]);
+                                }
+                            }
+                            //transaksi
+                            System.out.print("Pilih Menu : ");
+                            pilih2 = sc.nextInt();
+                            belimakan[jumlahbeli] = carimakanan[pilih2 - 1];
+                            beliharga[jumlahbeli] = cariharga[pilih2 - 1];
+                            jumlahbeli++;
+                            
+                            System.out.print("Jumlah Beli : ");
+                            jumlah = sc.nextInt();
+                            System.out.print("\n Apa Anda Ingin Pesan Menu Lagi? (y/n) :"); 
+                                b = sc.next();
+                            }
+                            switch(pilih2){
+                                case 1:
+                                    break;
+                            }
+                                
+                            break;            
+                    }
+                            
+                    break;
+                case 3:
+                    System.out.println("THANK YOU");     
+            }
+        } while (pilih != 3);
+        //cetak daftar beli
+        
+        for (int i = 0; i < jumlahbeli; i++) {
+            total = beliharga[i] * jumlah;
+            finaltotal = total;
+//            belimakan[jumlahbeli] = carimakanan[pilih2 - 1];
+//            beliharga[jumlahbeli] = cariharga[pilih2 - 1];
+            System.out.println(belimakan[i]+"\t"+"(Rp."+beliharga[i]+")"+"\t"+jumlah+"x"+"\t = "+total);
+            
+        }
+         System.out.print("Grand Total : ");
+            for (int i = 0; i < jumlahbeli; i++) {
+                System.out.print(finaltotal);
+            
+            System.out.print("\nPembayaran :");
+            bayar = sc.nextInt();
+     
+            for(int q = 0; q < finaltotal; q++){
+                if(finaltotal == 0){
+                System.out.println("Uang Anda Pass");
+            } else if(bayar < finaltotal) {
+                System.out.print("Uang Anda Kurang :");
+                bayar = sc.nextInt();
+                
+            }    
+        }
+          
+                kembalian = bayar - finaltotal ;
+                System.out.println("Kembalian : Rp." + kembalian);
+               
+           
+        }
